@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.quest-contents-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.progress { 
+    margin: 10px;
+}
+
+.img-fluid {
+    width: 10%;
+}
+
+.title-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vh;
+}
+
+.card-title {
+    font-size: 26px;
+}
+
+.btn  {
+    background-color: rgb(255, 123, 0) !important;
+    border: none !important;
+    padding: 10px !important;
+}
+
