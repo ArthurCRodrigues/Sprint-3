@@ -1,0 +1,95 @@
+{
+    "dailyQuests": [
+      {
+        "id": 1,
+        "description": "Ganhe 100 moedas",
+        "reward": 100,
+        "progress": 0,
+        "goal": 100,
+        "img_path": "/imgs/coin.png"
+      },
+      {
+        "id": 2,
+        "description": "Ganhe 150 moedas",
+        "reward": 150,
+        "progress": 0,
+        "goal": 150,
+        "img_path": "/imgs/coin.png"
+      },
+      {
+        "id": 3,
+        "description": "Ganhe 200 moedas",
+        "reward": 200,
+        "progress": 0,
+        "goal": 200,
+        "img_path": "/imgs/coin.png"
+      },
+      {
+        "id": 4,
+        "description": "Ganhe 250 moedas",
+        "reward": 250,
+        "progress": 0,
+        "goal": 250,
+        "img_path": "/imgs/coin.png"
+      },
+      {
+        "id": 5,
+        "description": "Ganhe 300 moedas",
+        "reward": 300,
+        "progress": 0,
+        "goal": 300,
+        "img_path": "/imgs/coin.png"
+      },
+      {
+        "id": 6,
+        "description": "Ganhe 350 moedas",
+        "reward": 350,
+        "progress": 0,
+        "goal": 350,
+        "img_path": "/imgs/coin.png"
+      },
+      {
+        "id": 7,
+        "description": "Ganhe 400 moedas",
+        "reward": 400,
+        "progress": 0,
+        "goal": 400,
+        "img_path": "/imgs/coin.png"
+      }
+    ],
+    "weeklyQuests": [
+      {
+        "id": 1,
+        "description": "Acerte 5 questões seguidas",
+        "reward": 50,
+        "progress": 0,
+        "goal": 5,
+        "img_path": "/imgs/target.png"
+      },
+      {
+        "id": 2,
+        "description": "Acerte 10 questões seguidas",
+        "reward": 100,
+        "progress": 0,
+        "goal": 10,
+        "img_path": "/imgs/target.png"
+      },
+      {
+        "id": 3,
+        "description": "Acerte 15 questões seguidas",
+        "reward": 150,
+        "progress": 0,
+        "goal": 15,
+        "img_path": "/imgs/target.png"
+      },
+      {
+        "id": 4,
+        "description": "Acerte 20 questões seguidas",
+        "reward": 200,
+        "progress": 0,
+        "goal": 20,
+        "img_path": "/imgs/target.png"
+      }
+    ]
+  }
+  

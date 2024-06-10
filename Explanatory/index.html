@@ -5,47 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styleDis.css">
   </head>
   <body>
-    <div class="accordion" id="accordionExample">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 4vh;">
+      <div class="accordion" id="accordionPanelsStayOpenExample" style="width: 70%;">
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Accordion Item #1
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <h4 style="color: red">Aviso</h4>
             </button>
           </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
             <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <strong>Esta funcionalidade depende do site funcional.</strong> Ou seja, ela só funciona integralmente com base no que foi planejado quando o aplicativo está completamente desenvolvido e com todas as funcionalidades implementadas. Portanto, para fim de testes e avaliação na Sprint 3, disponibilizei essa funcionalidade separadamento com controladores que <strong>simulam</strong> o seu funcionamento.
+              <div class="form-check" style="margin-top: 10px;">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Eu compreendo que a funcionalidade só consegue ser totalmente implementada com o site funcional
+                </label>
+              </div>
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              <h4>O que é a funcionalidade?</h4>
             </button>
           </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
             <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              Essa funcionalidade surgiu da necessidade de manter o usuário engajado no aplicativo, fornecendo um certo estímulo para que ele conclua mais fases e questões. Para que esse objetivo fosse atendido, foi pensado na implementação de missões diárias e semanais, que geralmente requerem que o usuário complete um X número de fases ou que ele consiga uma X quantidade de Moédas. Desse modo, o usuário se sente motivado a realizar as fases do site.
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Accordion Item #3
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <h4>Como ela foi feita</h4>
             </button>
           </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
             <div class="accordion-body">
               <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
             </div>
           </div>
         </div>
-        
       </div>
+      <button type="button" id="acessarBtn" class="btn btn-secondary btn-lg" disabled><a href="/index.html" style="text-decoration: none; color: white;">Acessar Funcionalidade</a></button>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const checkbox = document.getElementById('flexCheckChecked');
+        const button = document.getElementById('acessarBtn');
+
+        // Function to toggle button state
+        const toggleButton = () => {
+          button.disabled = !checkbox.checked;
+        };
+
+        // Initial toggle to set correct state on page load
+        
+
+        // Add event listener to checkbox
+        checkbox.addEventListener('change', toggleButton);
+
+        // Add event listener to button
+        button.addEventListener('click', function (event) {
+          if (button.disabled) {
+            console.log('Please check the checkbox to enable the button.');
+            event.preventDefault();  // Prevent default action if button is disabled
+          }
+        });
+      });
+    </script>
   </body>
 </html>
