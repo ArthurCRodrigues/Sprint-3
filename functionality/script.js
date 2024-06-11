@@ -1,5 +1,11 @@
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    const questContainer = document.querySelector('.quest-contents-container');
+    const dailyQuestContainer = document.querySelector('.quest1-contents-container');
+    const weeklyQuestContainer = document.querySelector('.quest2-contents-container');
     const changeDayBtn = document.getElementById('changeDayBtn');
     const earnCoinsBtn = document.getElementById('earnCoinsBtn');
     const rightAnsBtn = document.getElementById('rightAns');
@@ -10,34 +16,42 @@ document.addEventListener('DOMContentLoaded', function() {
     var dailyQuest = 0;
     var weeklyQuest = 0;
     var questionRow = 0;
+    var coins = 0;
 
     let dailyQuests, weeklyQuests;
 
-    // Load quests from JSON file
+
+   
     fetch('db.json')
         .then(response => response.json())
         .then(data => {
             dailyQuests = data.dailyQuests;
             weeklyQuests = data.weeklyQuests;
+            dailyQuest = loadRandomQuests(1,"Missão Diária :");
+            weeklyQuest = loadRandomQuests(2,"Missão Semanal :")
         })
         .catch(error => console.error('Error loading quests:', error));
-
-    // Function to load random quests
-    function loadRandomQuests() {
+   
+    function loadRandomQuests(id,title) {
         ansProgress = 0;
         coinProgress = 0;
         questionRow = 0;
-        questContainer.innerHTML = ''; // Clear previous quests
-        const randomDailyQuest = dailyQuests[Math.floor(Math.random() * dailyQuests.length)];
-        const randomWeeklyQuest = weeklyQuests[Math.floor(Math.random() * weeklyQuests.length)];
+        if (id == 1) { 
+          questContainer = dailyQuestContainer;
+          var randomQuest = dailyQuests[Math.floor(Math.random() * dailyQuests.length)];
+        }
+        else { 
+          questContainer = weeklyQuestContainer;
+          var randomQuest = weeklyQuests[Math.floor(Math.random() * weeklyQuests.length)];
 
-        questContainer.innerHTML += createQuestCard('Missão Diária', randomDailyQuest,1,false);
-        questContainer.innerHTML += createQuestCard('Missão Semanal', randomWeeklyQuest,2,false);
-        dailyQuest = randomDailyQuest;
-        weeklyQuest = randomWeeklyQuest;
+        }
+        questContainer.innerHTML = ''; 
+
+        questContainer.innerHTML += createQuestCard(title,randomQuest,id,false);
+        return randomQuest
     }
 
-    // Function to create quest card HTML
+
     function createQuestCard(title, quest, id, isCompleted) {
         if (isCompleted == true) {
             return `
@@ -48,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="card-body">
             <div class="title-holder">
           <img src="/imgs/checked.png" class="img-fluid" alt="..." id="main-img">
-          <h5 class="card-title">${quest.description}s</h5>
+          <h5 class="card-title">${quest.description}</h5>
           </div>
           <div class="progress" role="progressbar" aria-label="Example 20px high" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200" style="height: 30px" id="questProgressStructure1">
             <div class="progress-bar bg-success" style="width: 100%" id="questProgressBar1">Completo!</div>
@@ -80,33 +94,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkCompletion(score,quest,id,title) {
         goal = quest.goal;
+        if (id == 1) { 
+          questContainer = dailyQuestContainer;
+        }
+        else { 
+          questContainer = weeklyQuestContainer;
+
+        }
         if (score >= goal) {
             questContainer.innerHTML = createQuestCard(title,quest,id,true);
         }
         else {
             return
         }
-        //questProgress = document.getElementById(`questProgressBar${id}`).style.width;
-        //questGoal = document.getElementById(`questProgressStructure${id}`).getAttribute("aria-valuemax");
-        //progress = (questProgress*questGoal)/100;
-        //console.log(`${progress}-${questGoal}`);
-        //if (progress >= questGoal) {
-          //  console.log("Is equal")
-            //questContainer.innerHTML = createQuestCard(title,quest,id,true);
-        //}
-        //console.log(`Not equal.`)
         
     }
 
-    // Add event listener to the button
-    changeDayBtn.addEventListener('click', loadRandomQuests);
+  
+
+    changeDayBtn.addEventListener('click', function () {
+      dailyQuest = loadRandomQuests(1,"Missão Diária :");
+      weeklyQuest = loadRandomQuests(2,"Missão Semanal :")
+    });
 
     earnCoinsBtn.addEventListener("click",function() {
+        coins += 50;
         questProgress = document.getElementById('questProgressBar1');
         questGoal = document.getElementById("questProgressStructure1").getAttribute("aria-valuemax");
         coinProgress += (50/questGoal)*100;
         questProgress.style.width = `${coinProgress}%`;
-        if (coinProgress <= 100) {questProgress.innerHTML = `${Math.trunc(((coinProgress*questGoal)/100))}/${questGoal}` }
+        if (coinProgress <= 100) {questProgress.innerHTML = `${Math.trunc(((coinProgress*questGoal)/100))}/${questGoal}` };
+        checkCompletion(coins,dailyQuest,1,"Missão Diária :"); 
     });
 
     rightAnsBtn.addEventListener('click', function() {
@@ -117,8 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
         questProgress = document.getElementById('questProgressBar2');
         ansProgress += (1/goalJson)*100;
         questProgress.style.width = `${ansProgress}%`;
-        if (ansProgress <= 100) {questProgress.innerHTML = `${questionRow}` };
-        checkCompletion(questionRow,weeklyQuest,2,"Missão Semanal :");   
+        if (ansProgress <= 100) {questProgress.innerHTML = `${questionRow}/${goalJson}` }; 
+        checkCompletion(questionRow,weeklyQuest,2,"Missão Semanal :");  
     });
 
     wrongAnsBtn.addEventListener('click', function() {   
@@ -127,11 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
         questProgress.style.width = 0;
     })
 
-
-    test = document.getElementById('Arthur');
-    test.addEventListener('click', function() {
-
-    })
 
 
 });

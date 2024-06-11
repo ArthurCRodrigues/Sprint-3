@@ -77,5 +77,11 @@ span {
     width: 100%;
 }
 
+.quests-container {
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 
 
