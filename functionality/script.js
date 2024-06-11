@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let coinProgress = 0;
     var dailyQuest = 0;
     var weeklyQuest = 0;
+    var questionRow = 0;
 
     let dailyQuests, weeklyQuests;
 
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadRandomQuests() {
         ansProgress = 0;
         coinProgress = 0;
+        questionRow = 0;
         questContainer.innerHTML = ''; // Clear previous quests
         const randomDailyQuest = dailyQuests[Math.floor(Math.random() * dailyQuests.length)];
         const randomWeeklyQuest = weeklyQuests[Math.floor(Math.random() * weeklyQuests.length)];
@@ -44,18 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
           ${title}
         </div>
         <div class="card-body">
-          <div class="card-content-holder">
             <div class="title-holder">
-          <img src="${quest.img_path}" class="img-fluid" alt="...">
-          <h5 class="card-title">${quest.description}</h5>
-          </div>
-            <div class="checked-img-container">
-            <img src="/imgs/checked.png" alt="" class="img2">
-            <span class="badge text-bg-success">Feito</span>
-            </div>
+          <img src="/imgs/checked.png" class="img-fluid" alt="..." id="main-img">
+          <h5 class="card-title">${quest.description}s</h5>
           </div>
           <div class="progress" role="progressbar" aria-label="Example 20px high" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200" style="height: 30px" id="questProgressStructure1">
-            <div class="progress-bar bg-success" style="width: 100%" id="questProgressBar${id}">Completa!</div>
+            <div class="progress-bar bg-success" style="width: 100%" id="questProgressBar1">Completo!</div>
           </div>
         </div>
       </div>
@@ -63,37 +59,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else {
             return `
-            <div class="card quest-card">
-                <div class="card-header">
-                    ${title}
-                </div>
-                <div class="card-body">
-                    <div class="title-holder">
-                        <img src="${quest.img_path}" class="img-fluid" alt="..." id="main-img">
-                        <h5 class="card-title">${quest.description}</h5>
-                    </div>
-                    <div class="progress" role="progressbar" aria-label="Example 20px high" aria-valuenow="${quest.progress}" aria-valuemin="0" aria-valuemax="${quest.goal}" style="height: 30px" id= "questProgressStructure${id}">
-                        <div class="progress-bar bg-danger" style="width: ${quest.progress}%" id = "questProgressBar${id}">${quest.progress}%</div>
-                    </div>
-                    <p class="card-text">Reward: ${quest.reward} coins</p>
-                </div>
-            </div>
-        `;
+            <div class="card">
+        <div class="card-header">
+          ${title}
+        </div>
+        <div class="card-body">
+            <div class="title-holder">
+          <img src="${quest.img_path}" class="img-fluid" alt="..." id="main-img">
+          <h5 class="card-title">${quest.description}</h5>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Example 20px high" aria-valuenow="0" aria-valuemin="0" aria-valuemax="${quest.goal}" style="height: 30px" id="questProgressStructure1">
+            <div class="progress-bar bg-danger" style="width: 0%" id="questProgressBar${id}">0/${quest.goal}</div>
+          </div>
+        </div>
+      </div>
+            `
         }
         
     }
 
-    function checkCompletion(id,quest,title) {
-        questProgress = document.getElementById(`questProgressBar${id}`).style.width;
-    
-        questGoal = document.getElementById(`questProgressStructure${id}`).getAttribute("aria-valuemax");
-        progress = (1*questGoal)/100;
-        console.log(`${progress}-${questGoal}`);
-        if (progress >= questGoal) {
-            console.log("Is equal")
-            //questContainer.innerHTML = createQuestCard(title,quest,id,true);
+    function checkCompletion(score,quest,id,title) {
+        goal = quest.goal;
+        if (score >= goal) {
+            questContainer.innerHTML = createQuestCard(title,quest,id,true);
         }
-        console.log(`Not equal.`)
+        else {
+            return
+        }
+        //questProgress = document.getElementById(`questProgressBar${id}`).style.width;
+        //questGoal = document.getElementById(`questProgressStructure${id}`).getAttribute("aria-valuemax");
+        //progress = (questProgress*questGoal)/100;
+        //console.log(`${progress}-${questGoal}`);
+        //if (progress >= questGoal) {
+          //  console.log("Is equal")
+            //questContainer.innerHTML = createQuestCard(title,quest,id,true);
+        //}
+        //console.log(`Not equal.`)
         
     }
 
@@ -109,23 +110,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     rightAnsBtn.addEventListener('click', function() {
-        console.log("Hapenned");
-        checkCompletion(2,weeklyQuest,"Missão Semanal: ");
+        progressJson = weeklyQuest.progress;
+        progressJson += 1;
+        questionRow += 1;
+        goalJson = weeklyQuest.goal;
         questProgress = document.getElementById('questProgressBar2');
-        questGoal = document.getElementById("questProgressStructure2").getAttribute("aria-valuemax");
-        ansProgress += (1/questGoal)*100;
+        ansProgress += (1/goalJson)*100;
         questProgress.style.width = `${ansProgress}%`;
-        if (ansProgress <= 100) {questProgress.innerHTML = `${Math.trunc(((ansProgress*questGoal)/100))}/${questGoal}` }   
+        if (ansProgress <= 100) {questProgress.innerHTML = `${questionRow}` };
+        checkCompletion(questionRow,weeklyQuest,2,"Missão Semanal :");   
     });
 
     wrongAnsBtn.addEventListener('click', function() {   
         questProgress = document.getElementById('questProgressBar2');
-        ansProgress = 0;
-        questProgress.style.width = ansProgress
+        questionRow = 0;
+        questProgress.style.width = 0;
     })
 
 
+    test = document.getElementById('Arthur');
+    test.addEventListener('click', function() {
 
+    })
 
 
 });
