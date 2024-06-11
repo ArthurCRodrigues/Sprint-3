@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const rightAnsBtn = document.getElementById('rightAns');
     const wrongAnsBtn = document.getElementById('wrongAns');
 
+    let ansProgress = 0;
+    let coinProgress = 0;
     var dailyQuest = 0;
     var weeklyQuest = 0;
 
@@ -21,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to load random quests
     function loadRandomQuests() {
+        ansProgress = 0;
+        coinProgress = 0;
         questContainer.innerHTML = ''; // Clear previous quests
         const randomDailyQuest = dailyQuests[Math.floor(Math.random() * dailyQuests.length)];
         const randomWeeklyQuest = weeklyQuests[Math.floor(Math.random() * weeklyQuests.length)];
@@ -55,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener to the button
     changeDayBtn.addEventListener('click', loadRandomQuests);
 
-    let coinProgress = 0;
     earnCoinsBtn.addEventListener("click",function() {
         questProgress = document.getElementById('questProgressBar1');
         questGoal = document.getElementById("questProgressStructure1").getAttribute("aria-valuemax");
@@ -64,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (coinProgress <= 100) {questProgress.innerHTML = `${Math.trunc(((coinProgress*questGoal)/100))}/${questGoal}` }
     });
 
-    let ansProgress = 0;
     rightAnsBtn.addEventListener('click', function() {
         console.log("Hapenned");
         questProgress = document.getElementById('questProgressBar2');
