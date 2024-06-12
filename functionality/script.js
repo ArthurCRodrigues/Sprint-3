@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error loading quests:', error));
    
     function loadRandomQuests(id,title) {
+        coins = 0;
         ansProgress = 0;
         coinProgress = 0;
         questionRow = 0;

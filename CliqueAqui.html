@@ -50,7 +50,25 @@
           </h2>
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
             <div class="accordion-body">
+              <dl class="row">
+                <dt class="col-sm-3">Dados Json</dt>
+                <dd class="col-sm-9">A fim de obter um banco de questões e gerar questões aleatórias todos os dias, usei um JSON para guardar as questões</dd>
               
+                <dt class="col-sm-3">Geração de Questões Aleatórias</dt>
+                <dd class="col-sm-9">
+                  <p><code> dailyQuests[Math.floor(Math.random() * dailyQuests.length)]</code></p>
+                  <p><code>dailyQuests</code> é todo objeto de missões diárias, que tem 7 elementos/missões.<br>O código acima gera um número aleatório entre 0 e o tamanho do objeto <code>dailyQuests</code> e usa esse número como índice para acessa o elemento no índice do número aleatório. </p>
+                </dd>
+              
+                <dt class="col-sm-3">Carregamento dinâmico de Missões</dt>
+                <dd class="col-sm-9">O JavaScript carrega missões de um arquivo <code>db.json</code> usando <code>fetch</code> e exibe uma missão diária e uma semanal aleatoriamente. Isso é feito na função <code>loadRandomQuests</code>, que seleciona uma missão aleatória e chama <code>createQuestCard</code> para criar o cartão de missão.</dd>
+              
+                <dt class="col-sm-3">Atualização de Progresso</dt>
+                <dd class="col-sm-9">Funções como <code>checkCompletion</code> verificam se a missão foi completada ao atualizar a barra de progresso. Se a missão é concluída, o cartão é atualizado para refletir isso visualmente.</dd>
+              
+                <dt class="col-sm-3">Uso do Bootstrap</dt>
+                <dd class="col-sm-9">A aplicação utiliza Bootstrap para estilizar os componentes, aproveitando classes como <code>btn</code>btn e <code>progress</code>progress para criar uma interface responsiva e visualmente agradável.</dd>
+              </dl>
             </div>
           </div>
         </div>

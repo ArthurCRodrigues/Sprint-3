@@ -6,7 +6,7 @@
         "reward": 100,
         "progress": 0,
         "goal": 100,
-        "img_path": "/imgs/coin.png"
+        "img_path": "/imgs/moeda.png"
       },
       {
         "id": 2,
@@ -14,7 +14,7 @@
         "reward": 150,
         "progress": 0,
         "goal": 150,
-        "img_path": "/imgs/coin.png"
+        "img_path": "/imgs/dollar.png"
       },
       {
         "id": 3,
@@ -30,7 +30,7 @@
         "reward": 250,
         "progress": 0,
         "goal": 250,
-        "img_path": "/imgs/coin.png"
+        "img_path": "/imgs/moeda.png"
       },
       {
         "id": 5,
@@ -38,7 +38,7 @@
         "reward": 300,
         "progress": 0,
         "goal": 300,
-        "img_path": "/imgs/coin.png"
+        "img_path": "/imgs/dollar.png"
       },
       {
         "id": 6,
@@ -54,7 +54,7 @@
         "reward": 400,
         "progress": 0,
         "goal": 400,
-        "img_path": "/imgs/coin.png"
+        "img_path": "/imgs/moeda.png"
       }
     ],
     "weeklyQuests": [
@@ -72,7 +72,7 @@
         "reward": 100,
         "progress": 0,
         "goal": 10,
-        "img_path": "/imgs/target.png"
+        "img_path": "/imgs/process.png"
       },
       {
         "id": 3,
@@ -80,7 +80,7 @@
         "reward": 150,
         "progress": 0,
         "goal": 15,
-        "img_path": "/imgs/target.png"
+        "img_path": "/imgs/tech.png"
       },
       {
         "id": 4,
@@ -88,7 +88,7 @@
         "reward": 200,
         "progress": 0,
         "goal": 20,
-        "img_path": "/imgs/target.png"
+        "img_path": "/imgs/fun.png"
       }
     ]
   }

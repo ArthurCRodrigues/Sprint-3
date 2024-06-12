@@ -3,6 +3,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #110e0900 !important;
+
+}
+
+html {
+    background-color: #110e09;
 }
 
 .quest-contents-container {
@@ -82,6 +88,30 @@ span {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    margin-bottom: 100px;
 }
+
+.card {
+    color: white !important;
+    background-color: #ff6b35 !important;
+    border-radius: 30px !important;
+    box-shadow: 1vh 2vh 0 #5a210c;
+}
+
+.card-header {
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    background-color: #d15528 !important;
+}
+
+.progress {
+    border-radius: 100px !important;
+    background-color: #ffba9b !important;
+}
+
+
 
 
